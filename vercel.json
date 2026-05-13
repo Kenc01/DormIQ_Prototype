@@ -1,6 +1,6 @@
 {
   "buildCommand": "pnpm -w run build:vercel",
-  "outputDirectory": "out",
+  "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "framework": null,
   "rewrites": [
