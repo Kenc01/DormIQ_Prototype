@@ -1,6 +1,6 @@
 {
-  "buildCommand": "pnpm --filter @workspace/dorm-app run build && mkdir -p dist && cp -a artifacts/dorm-app/dist/public/. dist/",
-  "outputDirectory": "dist",
+  "buildCommand": "pnpm run build:vercel",
+  "outputDirectory": "out",
   "installCommand": "pnpm install",
   "framework": null,
   "rewrites": [
