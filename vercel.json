@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm --filter @workspace/dorm-app run build && mkdir -p dist && cp -a artifacts/dorm-app/dist/public/. dist/",
+  "buildCommand": "cd artifacts/dorm-app && pnpm run build && mkdir -p ../../dist && cp -a dist/public/. ../../dist/",
   "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "framework": null,
