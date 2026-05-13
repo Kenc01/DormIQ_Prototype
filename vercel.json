@@ -1,0 +1,13 @@
+{
+  "buildCommand": "pnpm --filter @workspace/dorm-app run build",
+  "outputDirectory": "artifacts/dorm-app/dist/public",
+  "installCommand": "pnpm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/index" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "env": {
+    "BASE_PATH": "/"
+  }
+}
