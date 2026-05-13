@@ -1,0 +1,95 @@
+=== SCREEN 3: DORM DETAIL / LISTING PAGE ===
+This is the most important screen — the VSES score is the core feature.
+- Header: Back arrow + "Madera Residences"
+- Photo placeholder: full-width teal gradient rectangle, 180px tall, with dorm name overlaid in white bold text at bottom-left, and a "⭐ 4.8" badge at top-right
+- Info row: 📍 0.3 km from MSU-IIT | ₱3,200/mo | 2 beds available
+- "VERIFIED STUDENT ENVIRONMENT SCORE" section header (teal, bold, uppercase small text)
+- Large score circle: big "4.8" in teal bold inside a circle outline, with "out of 5.0" below in gray
+- 4 metric bars (each is a label + colored progress bar + score):
+    📶 WiFi Speed — bar filled 92% — "4.6/5"
+    🔇 Noise Level — bar filled 88% — "4.4/5" 
+    🛡️ Safety Rating — bar filled 96% — "4.8/5"
+    💰 Cost Transparency — bar filled 82% — "4.1/5"
+  Bar color: teal (#028090). Bar background: light gray.
+- "Verified by 12 student tenants" in small green text with a ✓ shield icon
+- Landlord info: small row — "🏠 Owner: Mr. Santos | ☎️ 0917-xxx-xxxx | ✅ ID Verified"
+- Student Reviews section header
+- 2 review cards. Each card: 
+    - Star rating (filled amber stars)
+    - Review text
+    - "Verified Tenant ✓" badge in green
+    Review 1: ⭐⭐⭐⭐⭐ "WiFi is super fast, perfect for online classes. Landlord is very responsive." — Verified Tenant ✓
+    Review 2: ⭐⭐⭐⭐ "Safe neighborhood, quiet at night. Only downside is no hot water." — Verified Tenant ✓
+- Big teal button at bottom: "📩 Contact Landlord"
+
+=== SCREEN 4: SUBMIT A REVIEW ===
+- Header: Back arrow + "Submit a Review"
+- Subtext: "Your review is anonymous and verified by your school ID"
+- Step indicator: 3 dots — Step 1 active (teal), Step 2 gray, Step 3 gray. Label: "Step 1 of 3: Verify Identity"
+- School ID verification card (white card, shadow):
+    - Label: "Upload School ID"
+    - A dashed border rectangle placeholder (bg-gray-50): "📎 Tap to upload your school ID" centered
+    - Below: small lock icon + text "Your ID is used for verification only. Never stored or shared."
+- School name dropdown (fake, pre-selected): "MSU-IIT — Iligan Institute of Technology"
+- Student ID number field: text input, placeholder "Enter your student ID number"
+- Big teal button: "Verify & Continue →"
+- On clicking "Verify & Continue", show Step 2: Rate the Dorm
+    Step 2 content:
+    - "You are reviewing: Madera Residences" in a teal info chip
+    - 4 rating rows, each with label + 5 clickable amber stars:
+        📶 WiFi Speed
+        🔇 Noise Level  
+        🛡️ Safety Rating
+        💰 Cost Transparency
+    - Text area: "Write your review (optional)" placeholder
+    - Teal button: "Submit Review →"
+- On clicking "Submit Review", show Step 3: Success screen
+    Step 3 content:
+    - Big green checkmark circle (✅) centered
+    - Bold text: "Review Submitted!"
+    - Subtext: "Thank you. Your review is now live and helping other students."
+    - Gray button: "Back to Home"
+
+=== SCREEN 5: LANDLORD REGISTRATION ===
+- Header: "List Your Property"
+- Subtext: "Reach verified student tenants"
+- Benefits row (3 small cards): 
+    "📣 More Visibility", "✅ Verified Tenants", "📊 Score Dashboard"
+- Form fields (all styled with rounded-xl border, teal focus ring):
+    - Property Name (text input)
+    - Monthly Price in ₱ (number input)  
+    - Address (text input)
+    - Number of Rooms Available (number input)
+    - Amenities checkboxes: ☑ WiFi  ☐ Air Conditioning  ☑ Private Bathroom  ☐ Hot Water  ☑ 24/7 Security
+- Upload section: "Upload Property Photos" — dashed border placeholder with camera icon
+- Government ID section: "Upload Owner ID for Verification" — same dashed placeholder style
+- Listing type selector (2 cards side by side):
+    Left: "Free Listing" — Basic visibility — Selected by default (teal border)
+    Right: "Featured ₱300/mo" — Top of search results — gray border
+- Big teal submit button: "Submit Listing for Review"
+- After clicking submit: show a success card — "✅ Listing Submitted! We'll review your property within 24 hours."
+
+=== NAVIGATION ===
+Bottom nav bar (fixed, white background, subtle top shadow):
+5 tabs with icons and labels:
+  🏠 Home | 🔍 Search | 🏘️ Dorms | ⭐ Review | 📋 List
+Active tab: teal color + teal dot indicator above icon
+Inactive tabs: gray
+
+=== TECHNICAL REQUIREMENTS ===
+- React functional components with useState for screen switching
+- Tailwind CSS for all styling (use CDN)
+- No backend, no API calls, no authentication
+- All data is hardcoded mock data
+- Mobile-first: max-width 390px, centered on desktop with a subtle phone frame shadow
+- Smooth screen transitions (simple fade or slide)
+- The app should look like a real polished mobile app — not a wireframe
+- Add a thin teal top status bar (fake) at the very top: time "9:41" on left, icons on right
+- Make sure the bottom nav does not overlap content — add padding-bottom to scrollable areas
+
+=== IMPORTANT FOR PITCH ===
+This is a pitch demo. It must look professional and trustworthy. 
+The VSES score on Screen 3 is the most important feature — make it visually prominent.
+The "Verified Tenant ✓" badges on reviews must be clearly visible.
+The app should feel like something a real startup would ship.
+Do NOT use placeholder lorem ipsum text anywhere — use the real mock data provided above.
