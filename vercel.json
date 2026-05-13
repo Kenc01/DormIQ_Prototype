@@ -1,5 +1,5 @@
 {
-  "buildCommand": "echo 'Checking current directory...' && pwd && echo 'Listing root files...' && ls -F && cd artifacts/dorm-app && echo 'Entered dorm-app. Building...' && pnpm run build && echo 'Build finished. Contents of dist/public:' && ls -F dist/public && mkdir -p ../../dist && cp -va dist/public/. ../../dist/ && echo 'Copy complete. Contents of root dist:' && ls -F ../../dist",
+  "buildCommand": "pnpm --filter @workspace/dorm-app run build && mkdir -p dist && cp -a artifacts/dorm-app/dist/public/. dist/",
   "outputDirectory": "dist",
   "installCommand": "pnpm install",
   "framework": null,
