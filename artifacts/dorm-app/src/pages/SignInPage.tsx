@@ -292,7 +292,17 @@ export default function SignInPage({ onSignIn, onGoSignUp }: SignInPageProps) {
           textAlign: "center", fontSize: 11.5, color: "#b0bec5",
           marginTop: 16, fontWeight: 500,
         }}>
-          Free for all students · No subscription needed
+          Developed by:{" "}
+          <a
+            href="https://keithlar.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "#028090", fontWeight: 700, textDecoration: "none" }}
+            onMouseEnter={e => (e.currentTarget.style.textDecoration = "underline")}
+            onMouseLeave={e => (e.currentTarget.style.textDecoration = "none")}
+          >
+            KeithLar
+          </a>
         </p>
       </div>
     </div>
