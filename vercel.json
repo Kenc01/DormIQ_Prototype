@@ -1,5 +1,5 @@
 {
-  "buildCommand": "pnpm -w run build:vercel",
+  "buildCommand": "pnpm run vercel-build",
   "outputDirectory": "out",
   "installCommand": "pnpm install",
   "framework": null,

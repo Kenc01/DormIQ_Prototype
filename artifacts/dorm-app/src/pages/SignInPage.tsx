@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
 
 interface SignInPageProps {
   onSignIn: () => void;
@@ -11,139 +11,287 @@ export default function SignInPage({ onSignIn, onGoSignUp }: SignInPageProps) {
   const [password, setPassword] = useState("DormIQ2024");
   const [showPass, setShowPass] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [passFocused, setPassFocused] = useState(false);
 
   const handleSignIn = () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      onSignIn();
-    }, 1200);
+    setTimeout(() => { setLoading(false); onSignIn(); }, 1200);
   };
 
   return (
-    <div className="min-h-full flex flex-col bg-white">
-      {/* Top gradient hero */}
-      <div className="bg-gradient-to-br from-[#028090] to-[#02C39A] px-6 pt-12 pb-10 flex flex-col items-center">
-        {/* Logo */}
-        <div className="flex items-center gap-3 mb-2">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-12 h-12 flex-shrink-0">
-            <defs>
-              <linearGradient id="pinGsi" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style={{ stopColor: "#ffffff", stopOpacity: 0.9 }} />
-                <stop offset="100%" style={{ stopColor: "#e0f7fa", stopOpacity: 0.8 }} />
-              </linearGradient>
-            </defs>
-            <path
-              d="M50 4C29.0 4 12 21.0 12 42C12 60.5 50 96 50 96C50 96 88 60.5 88 42C88 21.0 71.0 4 50 4Z"
-              fill="url(#pinGsi)"
-            />
-            <circle cx="50" cy="40" r="26" fill="white" opacity="0.15" />
-            <text
-              x="50" y="53"
-              fontFamily="Arial,Helvetica,sans-serif"
-              fontSize="30" fontWeight="900"
-              fill="#028090" textAnchor="middle" letterSpacing="-1"
-            >
-              IQ
-            </text>
-          </svg>
-          <div>
-            <h1 className="text-3xl font-black text-white leading-none tracking-tight">DormIQ</h1>
-            <p className="text-white/80 text-[11px] font-medium mt-0.5">Find your dorm smarter.</p>
+    <div className="min-h-full flex flex-col" style={{ background: "#f0f4f8" }}>
+
+      {/* ── Hero ── */}
+      <div
+        className="relative flex flex-col items-center text-center px-6"
+        style={{
+          background: "linear-gradient(150deg, #016b78 0%, #028090 45%, #02b490 100%)",
+          paddingTop: 32,
+          paddingBottom: 60,
+          overflow: "hidden",
+        }}
+      >
+        {/* Decorative rings */}
+        <div style={{
+          position: "absolute", top: -60, right: -60,
+          width: 200, height: 200, borderRadius: "50%",
+          border: "40px solid rgba(255,255,255,0.05)",
+          pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "absolute", bottom: 30, left: -50,
+          width: 140, height: 140, borderRadius: "50%",
+          border: "28px solid rgba(255,255,255,0.05)",
+          pointerEvents: "none",
+        }} />
+
+        {/* Logo pill */}
+        <div style={{
+          display: "flex", alignItems: "center", gap: 12,
+          background: "rgba(255,255,255,0.15)",
+          borderRadius: 100,
+          padding: "8px 20px 8px 8px",
+          border: "1px solid rgba(255,255,255,0.22)",
+          backdropFilter: "blur(6px)",
+          marginBottom: 22,
+        }}>
+          {/* Pin icon */}
+          <div style={{
+            width: 38, height: 38, borderRadius: "50%",
+            background: "white",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            boxShadow: "0 2px 8px rgba(0,0,0,0.15)",
+            flexShrink: 0,
+          }}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" style={{ width: 24, height: 24 }}>
+              <path d="M50 4C29 4 12 21 12 42C12 60.5 50 96 50 96C50 96 88 60.5 88 42C88 21 71 4 50 4Z" fill="#028090" />
+              <text x="50" y="53" fontFamily="Arial,Helvetica,sans-serif" fontSize="30" fontWeight="900"
+                fill="white" textAnchor="middle" letterSpacing="-1">IQ</text>
+            </svg>
           </div>
+          <span style={{ fontSize: 18, fontWeight: 800, color: "white", letterSpacing: "-0.3px" }}>DormIQ</span>
         </div>
-        <p className="text-white/70 text-xs text-center mt-2">
-          The student-verified boarding house platform for JRMSU Dapitan
-        </p>
+
+        <h1 style={{
+          fontSize: 24, fontWeight: 800, color: "white",
+          letterSpacing: "-0.5px", lineHeight: 1.2, marginBottom: 0,
+        }}>
+          Your Smart Dorm Finder
+        </h1>
+
+        {/* Wave */}
+        <div style={{
+          position: "absolute", bottom: 0, left: 0, right: 0,
+          height: 48, overflow: "hidden",
+        }}>
+          <svg viewBox="0 0 390 48" preserveAspectRatio="none" style={{ width: "100%", height: "100%" }}>
+            <path d="M0,48 C80,10 180,0 260,20 C310,32 350,10 390,0 L390,48 Z" fill="#f0f4f8" />
+          </svg>
+        </div>
       </div>
 
-      {/* Form card */}
-      <div className="flex-1 px-6 pt-8 pb-8 space-y-4">
-        <h2 className="text-xl font-bold text-gray-800">Welcome back</h2>
-        <p className="text-sm text-gray-500 -mt-2">Sign in to your student account</p>
+      {/* ── Card ── */}
+      <div style={{ flex: 1, padding: "0 18px 24px", marginTop: -8 }}>
+        <div style={{
+          background: "white",
+          borderRadius: 28,
+          padding: "28px 22px 26px",
+          boxShadow: "0 4px 6px rgba(0,0,0,0.04), 0 12px 40px rgba(2,128,144,0.09)",
+        }}>
 
-        {/* Email */}
-        <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-            School Email
-          </label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-gray-800 bg-gray-50 focus:outline-none focus:border-[#028090] focus:ring-2 focus:ring-[#028090]/20 transition"
-            placeholder="you@jrmsu.edu.ph"
-          />
-        </div>
+          {/* Heading */}
+          <div style={{ textAlign: "center", marginBottom: 26 }}>
+            <h2 style={{
+              fontSize: 24, fontWeight: 800, color: "#0f172a",
+              letterSpacing: "-0.5px", marginBottom: 6,
+            }}>
+              Welcome back 👋
+            </h2>
+            <p style={{ fontSize: 13.5, color: "#94a3b8", fontWeight: 500 }}>
+              Sign in to your student account
+            </p>
+          </div>
 
-        {/* Password */}
-        <div className="space-y-1.5">
-          <label className="text-xs font-semibold text-gray-600 uppercase tracking-wide">
-            Password
-          </label>
-          <div className="relative">
-            <input
-              type={showPass ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full border border-gray-200 rounded-xl px-4 py-3 pr-12 text-sm text-gray-800 bg-gray-50 focus:outline-none focus:border-[#028090] focus:ring-2 focus:ring-[#028090]/20 transition"
-              placeholder="Your password"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPass(!showPass)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
-            >
-              {showPass ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+          {/* Email Field */}
+          <div style={{ marginBottom: 14 }}>
+            <label style={{
+              display: "block", fontSize: 11, fontWeight: 700,
+              color: emailFocused ? "#028090" : "#94a3b8",
+              textTransform: "uppercase", letterSpacing: "0.08em",
+              marginBottom: 7, transition: "color 0.2s",
+            }}>
+              School Email
+            </label>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10,
+              background: emailFocused ? "#f0fdf9" : "#f8fafc",
+              borderRadius: 14,
+              border: emailFocused ? "2px solid #028090" : "2px solid #e8f0f2",
+              padding: "13px 16px",
+              transition: "all 0.2s ease",
+              boxShadow: emailFocused ? "0 0 0 4px rgba(2,128,144,0.08)" : "none",
+            }}>
+              <Mail style={{
+                width: 17, height: 17, flexShrink: 0,
+                color: emailFocused ? "#028090" : "#cbd5e1",
+                transition: "color 0.2s",
+              }} />
+              <input
+                type="email" value={email}
+                onChange={e => setEmail(e.target.value)}
+                onFocus={() => setEmailFocused(true)}
+                onBlur={() => setEmailFocused(false)}
+                placeholder="you@jrmsu.edu.ph"
+                style={{
+                  flex: 1, background: "none", border: "none", outline: "none",
+                  fontSize: 14, color: "#0f172a", fontWeight: 500,
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Password Field */}
+          <div style={{ marginBottom: 10 }}>
+            <label style={{
+              display: "block", fontSize: 11, fontWeight: 700,
+              color: passFocused ? "#028090" : "#94a3b8",
+              textTransform: "uppercase", letterSpacing: "0.08em",
+              marginBottom: 7, transition: "color 0.2s",
+            }}>
+              Password
+            </label>
+            <div style={{
+              display: "flex", alignItems: "center", gap: 10,
+              background: passFocused ? "#f0fdf9" : "#f8fafc",
+              borderRadius: 14,
+              border: passFocused ? "2px solid #028090" : "2px solid #e8f0f2",
+              padding: "13px 16px",
+              transition: "all 0.2s ease",
+              boxShadow: passFocused ? "0 0 0 4px rgba(2,128,144,0.08)" : "none",
+            }}>
+              <Lock style={{
+                width: 17, height: 17, flexShrink: 0,
+                color: passFocused ? "#028090" : "#cbd5e1",
+                transition: "color 0.2s",
+              }} />
+              <input
+                type={showPass ? "text" : "password"} value={password}
+                onChange={e => setPassword(e.target.value)}
+                onFocus={() => setPassFocused(true)}
+                onBlur={() => setPassFocused(false)}
+                placeholder="Your password"
+                style={{
+                  flex: 1, background: "none", border: "none", outline: "none",
+                  fontSize: 14, color: "#0f172a", fontWeight: 500,
+                }}
+              />
+              <button type="button" onClick={() => setShowPass(!showPass)}
+                style={{ background: "none", border: "none", cursor: "pointer", padding: 4, lineHeight: 0 }}>
+                {showPass
+                  ? <EyeOff style={{ width: 16, height: 16, color: "#94a3b8" }} />
+                  : <Eye style={{ width: 16, height: 16, color: "#94a3b8" }} />}
+              </button>
+            </div>
+          </div>
+
+          {/* Forgot */}
+          <div style={{ textAlign: "right", marginBottom: 22 }}>
+            <button style={{
+              background: "none", border: "none", cursor: "pointer",
+              fontSize: 12.5, color: "#028090", fontWeight: 700,
+            }}>
+              Forgot password?
             </button>
           </div>
-        </div>
 
-        {/* Forgot password */}
-        <div className="flex justify-end">
-          <button className="text-xs text-[#028090] font-semibold">Forgot password?</button>
-        </div>
-
-        {/* Demo notice */}
-        <div className="bg-[#028090]/8 border border-[#028090]/20 rounded-xl px-4 py-3">
-          <p className="text-xs text-[#028090] font-medium">
-            Demo credentials are pre-filled — just tap <span className="font-bold">Sign In</span> to continue.
-          </p>
-        </div>
-
-        {/* Sign In button */}
-        <button
-          onClick={handleSignIn}
-          disabled={loading}
-          className="w-full bg-gradient-to-r from-[#028090] to-[#02C39A] text-white font-bold py-3.5 rounded-xl shadow-md active:scale-[0.98] transition-transform disabled:opacity-70"
-        >
-          {loading ? (
-            <span className="flex items-center justify-center gap-2">
-              <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="white" strokeWidth="4"/>
-                <path className="opacity-75" fill="white" d="M4 12a8 8 0 018-8v8z"/>
-              </svg>
-              Signing in...
+          {/* Demo chip */}
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 6,
+            background: "linear-gradient(135deg, rgba(2,128,144,0.08), rgba(2,180,144,0.08))",
+            border: "1px solid rgba(2,128,144,0.18)",
+            borderRadius: 100, padding: "6px 14px",
+            marginBottom: 16, width: "100%", justifyContent: "center",
+          }}>
+            <span style={{ fontSize: 10, color: "#028090", fontWeight: 700, letterSpacing: "0.04em" }}>
+              ✦ DEMO MODE
             </span>
-          ) : "Sign In"}
-        </button>
+            <span style={{ fontSize: 10, color: "#64748b", fontWeight: 500 }}>
+              Credentials are pre-filled
+            </span>
+          </div>
 
-        {/* Divider */}
-        <div className="flex items-center gap-3">
-          <div className="flex-1 h-px bg-gray-200" />
-          <span className="text-xs text-gray-400">or</span>
-          <div className="flex-1 h-px bg-gray-200" />
+          {/* Sign In button */}
+          <button
+            onClick={handleSignIn}
+            disabled={loading}
+            style={{
+              width: "100%", border: "none", cursor: loading ? "default" : "pointer",
+              background: loading
+                ? "linear-gradient(135deg, #5ba8b0, #5dcfb0)"
+                : "linear-gradient(135deg, #028090 0%, #02b490 100%)",
+              color: "white", fontSize: 15, fontWeight: 800,
+              padding: "16px 0", borderRadius: 16, letterSpacing: "0.01em",
+              boxShadow: loading ? "none" : "0 4px 6px rgba(2,128,144,0.2), 0 10px 28px rgba(2,128,144,0.28)",
+              display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
+              transition: "all 0.2s ease", marginBottom: 14,
+            }}
+            onMouseDown={e => { e.currentTarget.style.transform = "scale(0.985)"; e.currentTarget.style.boxShadow = "0 2px 12px rgba(2,128,144,0.3)"; }}
+            onMouseUp={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 4px 6px rgba(2,128,144,0.2), 0 10px 28px rgba(2,128,144,0.28)"; }}
+          >
+            {loading ? (
+              <>
+                <svg className="animate-spin" style={{ width: 18, height: 18 }} viewBox="0 0 24 24" fill="none">
+                  <circle cx="12" cy="12" r="10" stroke="rgba(255,255,255,0.35)" strokeWidth="3" />
+                  <path d="M4 12a8 8 0 018-8v8z" fill="white" />
+                </svg>
+                Signing in…
+              </>
+            ) : (
+              <>
+                Sign In
+                <ArrowRight style={{ width: 18, height: 18 }} />
+              </>
+            )}
+          </button>
+
+          {/* Divider */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
+            <div style={{ flex: 1, height: 1, background: "#f1f5f9" }} />
+            <span style={{ fontSize: 11.5, color: "#cbd5e1", fontWeight: 600 }}>or</span>
+            <div style={{ flex: 1, height: 1, background: "#f1f5f9" }} />
+          </div>
+
+          {/* Create account */}
+          <button
+            onClick={onGoSignUp}
+            style={{
+              width: "100%", cursor: "pointer",
+              background: "transparent",
+              border: "2px solid #e2ecee",
+              color: "#028090", fontSize: 15, fontWeight: 700,
+              padding: "15px 0", borderRadius: 16,
+              transition: "all 0.2s ease",
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = "#028090";
+              e.currentTarget.style.background = "rgba(2,128,144,0.04)";
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = "#e2ecee";
+              e.currentTarget.style.background = "transparent";
+            }}
+            onMouseDown={e => (e.currentTarget.style.transform = "scale(0.985)")}
+            onMouseUp={e => (e.currentTarget.style.transform = "scale(1)")}
+          >
+            Create a Free Account
+          </button>
         </div>
 
-        {/* Sign Up link */}
-        <button
-          onClick={onGoSignUp}
-          className="w-full border-2 border-[#028090] text-[#028090] font-bold py-3.5 rounded-xl active:scale-[0.98] transition-transform"
-        >
-          Create an Account
-        </button>
-
-        <p className="text-center text-[11px] text-gray-400 pt-2">
+        <p style={{
+          textAlign: "center", fontSize: 11.5, color: "#b0bec5",
+          marginTop: 16, fontWeight: 500,
+        }}>
           Free for all students · No subscription needed
         </p>
       </div>
